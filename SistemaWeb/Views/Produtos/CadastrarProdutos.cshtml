@@ -1,40 +1,43 @@
 ﻿
 @{
-    ViewBag.Title = "CadastrarProdutos";
+    ViewBag.Title = "Cadastrar Produtos";
 }
 
 <h2>Cadastrar Produtos</h2>
 
+<br />
+
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <form action="@Url.Action("Cadastrar","Produtos")">
+            <input id="inputId" name="Id" value="@ViewBag.Produtos.Id" hidden />
             <div class="mb-3">
                 <label for="inputNome" class="form-label">Nome</label>
-                <input type="text" class="form-control" name="Nome" id="inputNome">
+                <input type="text" class="form-control" value="@ViewBag.Produtos.Nome" name="Nome" id="inputNome">
             </div>
             <div class="mb-3">
                 <label for="inputDescricao" class="form-label">Descrição</label>
-                <input type="text" class="form-control" name="Descricao" id="inputDescricao">
+                <input type="text" class="form-control" value="@ViewBag.Produtos.Descricao" name="Descricao" id="inputDescricao">
             </div>
             <div class="mb-3">
                 <label for="inputLote" class="form-label">Lote</label>
-                <input type="text" class="form-control" name="Lote" id="inputLote">
+                <input type="text" class="form-control" value="@ViewBag.Produtos.Lote" name="Lote" id="inputLote">
             </div>
             <div class="mb-3">
                 <label for="inputValor" class="form-label">Valor</label>
-                <input type="number" class="form-control" name="Valor" id="inputValor">
+                <input type="number" class="form-control" value="@ViewBag.Produtos.Valor" name="Valor" id="inputValor">
             </div>
             <div class="mb-3">
                 <label for="inputFornecedor" class="form-label">Fornecedor</label>
-                <input type="text" class="form-control" name="Fornecedor" id="inputFornecedor">
+                <input type="text" class="form-control" value="@ViewBag.Produtos.Fornecedor" name="Fornecedor" id="inputFornecedor">
             </div>
             <div class="mb-3">
                 <label for="inputQuantidade" class="form-label">Quantidade</label>
-                <input type="number" class="form-control" name="Quantidade" id="inputQuantidade">
+                <input type="number" class="form-control" value="@ViewBag.Produtos.Quantidade" name="Quantidade" id="inputQuantidade">
             </div>
             <div class="mb-3">
                 <label for="inputFoto" class="form-label">Foto</label>
-                <input type="text" class="form-control" name="Foto" id="inputFoto">
+                <input type="text" class="form-control" value="@ViewBag.Produtos.Foto" name="Foto" id="inputFoto">
             </div>
             <div class="mb-3 form-check">
                 <br />

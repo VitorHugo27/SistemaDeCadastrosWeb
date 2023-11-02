@@ -10,20 +10,33 @@ namespace SistemaWeb.Controllers
 {
     public class ProdutosController : Controller
     {
-        // GET: Produtos
-        public ActionResult CadastrarProdutos()
+        public ActionResult CadastrarProdutos(int? id)
         {
-            Produtos produtos;
-            //ViewBag.Produtos = produtos;
+            Produtos produtos = new Produtos();
+            if (id != 0 && id != null)
+            {
+                ProdutosDao pDao = new ProdutosDao();
+                produtos = pDao.ListarProdutosId(Convert.ToInt32(id));
+            }
+
+            ViewBag.Produtos = produtos;
             return View();
         }
 
         public ActionResult Cadastrar(Produtos produtos)
         {
-            produtos.DataCadastro = DateTime.Now;
             ProdutosDao pDao = new ProdutosDao();
-            pDao.Cadastrar(produtos);
-            return RedirectToAction("CadastrarProdutos");
+            if (produtos.Id == 0)
+            {
+                produtos.DataCadastro = DateTime.Now;
+                pDao.Cadastrar(produtos);
+                return RedirectToAction("CadastrarProdutos");
+            }
+            else
+            {
+                pDao.Edtar(produtos);
+                return RedirectToAction("ListarProdutos");
+            }
         }
 
         public ActionResult ListarProdutos()
@@ -33,6 +46,11 @@ namespace SistemaWeb.Controllers
             return View();
         }
 
-
+        public ActionResult Deletar(int id)
+        {
+            ProdutosDao pDao = new ProdutosDao();
+            pDao.Deletar(Convert.ToInt32(id));
+            return RedirectToAction("ListarProdutos");
+        }
     }
 }

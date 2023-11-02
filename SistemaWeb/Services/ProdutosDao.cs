@@ -90,5 +90,74 @@ namespace SistemaWeb.Services
             produtos.DataCadastro = Convert.ToDateTime(reader["DataCadastro"]);
             return produtos;
         }
+
+        public Produtos ListarProdutosId(int id)
+        {
+            Produtos produtos = new Produtos();
+
+            String sql = "SELECT * FROM Produtos WHERE Id = @Id; ";
+
+            using (SqlConnection con = new SqlConnection(Conexao))
+            {
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@Id", id);
+                con.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    produtos = GetProdutos(reader);
+                }
+                con.Close();
+            }
+            return produtos;
+        }
+
+        public void Edtar(Produtos produtos)
+        {
+
+            String sql = "UPDATE Produtos SET Nome = @Nome, Descricao = @Descricao, Lote = @Lote, Valor = @Valor, Fornecedor = @Fornecedor, Quantidade = @Quantidade, Foto = @Foto " +
+                " WHERE Id = @Id; ";
+
+            using (SqlConnection con = new SqlConnection(Conexao))
+            {
+                SqlCommand cmd = new SqlCommand(sql, con);
+
+                cmd.Parameters.AddWithValue("@Id", produtos.Id);
+                cmd.Parameters.AddWithValue("@Nome", produtos.Nome);
+                cmd.Parameters.AddWithValue("@Descricao", produtos.Descricao);
+                cmd.Parameters.AddWithValue("@Lote", produtos.Lote);
+                cmd.Parameters.AddWithValue("@Valor", produtos.Valor);
+                cmd.Parameters.AddWithValue("@Fornecedor", produtos.Fornecedor);
+                cmd.Parameters.AddWithValue("@Quantidade", produtos.Quantidade);
+                cmd.Parameters.AddWithValue("@Foto", produtos.Foto);
+
+                cmd.CommandType = CommandType.Text;
+
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                con.Close();
+            }
+        }
+
+        public void Deletar(int id)
+        {
+            String sql = "Delete From Produtos Where Id = @Id; ";
+
+            using (SqlConnection con = new SqlConnection(Conexao))
+            {
+                SqlCommand cmd = new SqlCommand(sql, con);
+
+                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.CommandType = CommandType.Text;
+
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                con.Close();
+            }
+        }
+
     }
 }
