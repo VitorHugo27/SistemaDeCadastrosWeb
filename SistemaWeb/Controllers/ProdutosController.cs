@@ -50,7 +50,7 @@ namespace SistemaWeb.Controllers
         {
             ProdutosDao pDao = new ProdutosDao();
             pDao.Deletar(Convert.ToInt32(id));
-            return RedirectToAction("ListarProdutos");
+            return Json(id);
         }
     }
 }

@@ -117,7 +117,6 @@ namespace SistemaWeb.Services
 
         public void Edtar(Produtos produtos)
         {
-
             String sql = "UPDATE Produtos SET Nome = @Nome, Descricao = @Descricao, Lote = @Lote, Valor = @Valor, Fornecedor = @Fornecedor, Quantidade = @Quantidade, Foto = @Foto " +
                 " WHERE Id = @Id; ";
 

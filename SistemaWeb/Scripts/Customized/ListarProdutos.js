@@ -1,14 +1,24 @@
-﻿function Apagar(element) {
-    var id = $(element).data("id");
-    console.log(id);
+﻿let id;
 
-    $('#exampleModal').modal('show');
+function Apagar(element) {
+    id = $(element).data("id");
+    $('#apagarModal').modal('show');
 }
 
 
-//$.ajax({
-//    url: '/Produtos/Deletar',
-//    type: 'POST',
-//    dataType: 'json',
-//    data: { "id": id },
-//})
+$("#cadastrar").on("click", function () {
+    console.log(id);
+    $.ajax({
+        url: '/Produtos/Deletar',
+        type: 'POST',
+        dataType: 'json',
+        data: { "id": id },
+        success: function (response) {
+            location.reload();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert('Error - ' + errorThrown);
+        }
+    })
+});
+
