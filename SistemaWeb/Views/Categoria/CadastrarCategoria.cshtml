@@ -10,14 +10,14 @@
 <div class="row">
     <div class="col-md-12">
         <form action="@Url.Action("Cadastrar","Categoria")">
-            <input id="inputId" name="Id" value="@ViewBag.Produtos.Id" hidden />
+            <input id="inputId" name="Id" value="@ViewBag.Categoria.Id" hidden />
             <div class="mb-3">
                 <label for="inputNome" class="form-label">Nome</label>
-                <input type="text" class="form-control" value="@ViewBag.Produtos.Nome" name="Nome" id="inputNome">
+                <input type="text" class="form-control" value="@ViewBag.Categoria.Nome" name="Nome" id="inputNome">
             </div>
             <div class="mb-3">
                 <label for="inputDescricao" class="form-label">Descrição</label>
-                <input type="text" class="form-control" value="@ViewBag.Produtos.Descricao" name="Descricao" id="inputDescricao">
+                <input type="text" class="form-control" value="@ViewBag.Categoria.Descricao" name="Descricao" id="inputDescricao">
             </div>
             <div class="mb-3 form-check">
                 <br />
